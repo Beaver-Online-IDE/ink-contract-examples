@@ -1,0 +1,41 @@
+[package]
+name = "psp34-full"
+version = "0.2.1"
+edition = "2021"
+authors = ["Cardinal"]
+homepage = "https://github.com/Cardinal-Cryptography/PSP34"
+repository = "https://github.com/Cardinal-Cryptography/PSP34"
+license = ""
+readme = "README.md"
+description = "Minimal implementation of PSP34 token standard in pure ink!"
+exclude = [".github/*"]
+keywords = ["smart-contract", "token", "PSP34", "ink"]
+categories = ["cryptography::cryptocurrencies", "wasm"]
+
+[dependencies]
+ink = { version = "4.3", default-features = false }
+
+scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+scale-info = { version = "2.9", default-features = false, features = ["derive"], optional = true }
+psp34-full = { version = "0.2.1", default-features = false }
+
+[lib]
+path = "lib.rs"
+
+[features]
+default = ["std", "contract", "enumerable"]
+std = [
+    "ink/std",
+    "scale/std",
+    "scale-info/std", "psp34-full/std",
+]
+enumerable = []
+contract = []
+ink-as-dependency = []
+test-only = []
+
+# Uncomment line below if you want to use this crate witout the wrapping workspace
+#[workspace]
+
+#[dev-dependencies]
+#psp34-full = { path = ".", features = ["test-only", "default", "contract", "enumerable"] }
